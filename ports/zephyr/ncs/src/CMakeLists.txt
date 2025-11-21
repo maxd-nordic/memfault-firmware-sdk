@@ -10,3 +10,5 @@ endif()
 
 zephyr_library_sources_ifdef(CONFIG_MEMFAULT_NRF_SHELL memfault_nrf_cli.c)
 zephyr_library_sources_ifdef(CONFIG_MEMFAULT_NRF_CONNECTIVITY_CONNECTED_TIME_NRF91X memfault_platform_metrics_connectivity_lte.c)
+
+zephyr_library_sources_ifdef(CONFIG_MEMFAULT_USE_NRF_CLOUD_TRANSPORT memfault_platform_coap.c)

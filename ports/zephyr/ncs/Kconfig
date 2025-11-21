@@ -77,3 +77,23 @@ config MEMFAULT_NRF_NRF5_CPU_TEMP
           Use the MEMFAULT_METRICS_CPU_TEMP config option to disable support.
 
 endif # MEMFAULT_NRF_CONNECT_SDK
+
+config MEMFAULT_USE_NRF_CLOUD_TRANSPORT
+        bool "Use nRF Cloud CoAP endpoint"
+        depends on MODEM_JWT
+        depends on COAP
+        depends on COAP_EXTENDED_OPTIONS_LEN
+        help
+          Note: Requires device to be provisioned with nRF Cloud.
+
+if MEMFAULT_USE_NRF_CLOUD_TRANSPORT
+
+config MEMFAULT_NRF_CLOUD_SEC_TAG
+        int "Security tag to use for nRF Cloud connection"
+        default 16842753
+
+config MEMFAULT_NRF_CLOUD_HOST_NAME
+        string "nRF Cloud server hostname"
+        default "coap.nrfcloud.com"
+
+endif

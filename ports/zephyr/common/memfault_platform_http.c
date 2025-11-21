@@ -704,6 +704,7 @@ int memfault_zephyr_port_ota_update(const sMemfaultOtaUpdateHandler *handler) {
   return success ? 1 : -1;
 }
 
+#if !defined(CONFIG_MEMFAULT_USE_NRF_CLOUD_TRANSPORT)
 ssize_t memfault_zephyr_port_post_data_return_size(void) {
   if (!memfault_packetizer_data_available()) {
     return 0;
@@ -729,6 +730,7 @@ ssize_t memfault_zephyr_port_post_data_return_size(void) {
 
   return (rv == 0) ? (ctx.bytes_sent) : rv;
 }
+#endif /* !defined(CONFIG_MEMFAULT_USE_NRF_CLOUD_TRANSPORT) */
 
 int memfault_zephyr_port_post_data(void) {
   ssize_t rv = memfault_zephyr_port_post_data_return_size();
